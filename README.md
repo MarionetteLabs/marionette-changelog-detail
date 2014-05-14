@@ -275,3 +275,97 @@ this.region.show(myView, {forceShow: true});
 
 Every Marionette Class let you tune in before the destroy happened with `onBeforeDestroy`. But Regions were an unexplained exception to that rule.
 We decided to make it consistent by adding the before destroy hook to the Region class.
+
+#### Views
+
+##### Returning false from `onBeforeClose` no longer prevents the view from closing.
+
+Of all of the triggerMethod callbacks, `onBeforeClose` stood out for this unique feature. If you returned false from it, it would
+actually prevent the view from closing. This might seem useful, but it wasn't consistent with the rest of the library, and, maybe
+more frighteningly, it wasn't respected by Regions.
+
+Instead of making sure we handle this situation in every case, we decided it would be better to remove it. Instead of using a before
+hook to cancel an action we believe you should determine that logic before you ever fire the action.
+
+To give an example, instead of returning false in your onBeforeClose, you should have code like this:
+
+```js
+if (myCondition) {
+  this.close();
+} else {
+  // I am not closing!
+}
+```
+
+##### rename `close` to `destroy` for views.
+
+Frequently we are asked why a region has completely removed a view from existence when it calls close on it. These users ask, "we just
+closed it, can't we open it again?" For those more familiar with the library, you might know that the answer is no, you can't just reopen it
+because close is meant to be a permanent action; it's intended to set the view up for garbage collection.
+
+Because of this we decided to pick a verb that carries this same weight, and destroy fit the bill.
+
+##### Removes duplicate and inconsistent `itemView` events.
+
+ItemViews had 
+
+##### A new triggerMethod was added to collectionView: `before:child:remove`. 
+
+Believe it not, collections never used to alert you when before child view was removed. Well, they do now.
+
+##### childEvents callbacks no longer receives the event name as the first argument.
+
+
+
+##### `itemView` within a `collectionView` is now known as `childView`.
+
+One of the more confusing bits of the Marionette API was the use of the phrase `ItemView` in the CollectionView API. This
+suggests that you can only use ItemViews with CollectionViews. If you're familiar with Marionette you know that this isn't the case:
+you can use any View class. We hope the more general term 'childView' will make this more explicit.
+
+##### `compositeView` now calls `_onCollectionAdd` when adding a child view as compared to `addChildView`
+
+
+
+##### Collection and Composite Views now respect the collection comparator when rendering and when new views are added.
+
+
+
+##### collectionView’s and compositeView’s method `onChildRemove` is now known as `_onCollectionRemove`
+
+
+
+##### `collectionView` and `compositeView` now have an optional emptyViewOptions property which allows you to customize your `emptyView`.
+
+To complement the `childViewOptions` you can use to style your child views we now have `emptyViewOptions`. It works exactly as you'd expect.
+
+##### `renderModel` for `compositeView` is now called `_renderRoot`.
+
+
+
+##### `Layout` is now called `LayoutView`.
+
+Layouts can be difficult for newcomers to approach, and we don't think their name helps at all. A Layout is really just a View beneath all of
+its fancy features, so we decided to rename it to `LayoutView` in v2. 
+
+##### Layouts now facilitate overriding the default RegionManager with a custom Class through the use of the `getRegionManager` method.
+
+Ah, yes, the RegionManager. Layouts get their Region superpowers from a Marionette class called the RegionManager. It used to be difficult
+to override the RegionManager because there was no helper function to do so. Now you can use `getRegionManager` to easily provide
+your own, should you feel so inclined.
+
+##### LayoutViews now lets you specify the `regions` hash as an option upon instantiation.
+
+There was previously no way to instantiate a LayoutView by itself. You absolutely needed to create a new Class for it. The reason for this
+is because the `regions` property was ignored if you passed it in as an option to Regions. In v2 we changed this, so you can now define a
+basic LayoutView without creating a brand new class.
+
+```js
+var myLayout = new LayoutView({
+  model: myModel,
+  template: myTemplate,
+  regions: {
+    myDiv: 'div.mine'
+  }
+});
+```
