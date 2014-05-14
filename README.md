@@ -315,7 +315,10 @@ Believe it not, collections never used to alert you when before child view was r
 
 ##### childEvents callbacks no longer receives the event name as the first argument.
 
-
+CollectionViews have a `childEvents` hash, which forwards child events to callbacks on the parent view itself. However,
+the arguments passed to these callbacks were inconsistent with the normal callbacks for triggers. The inconsistency was due to
+the first argument of the callback, which for `childEvents` was the name of the event. In other situations the callbacks for Backbone Events
+don't receive the name of the event at all. This change makes `childEvents` arguments consistent with the arguments for any other callback.
 
 ##### `itemView` within a `collectionView` is now known as `childView`.
 
@@ -323,17 +326,26 @@ One of the more confusing bits of the Marionette API was the use of the phrase `
 suggests that you can only use ItemViews with CollectionViews. If you're familiar with Marionette you know that this isn't the case:
 you can use any View class. We hope the more general term 'childView' will make this more explicit.
 
-##### `compositeView` now calls `_onCollectionAdd` when adding a child view as compared to `addChildView`
+##### `compositeView` now calls `_onCollectionAdd` when adding a child model as compared to `addChildView`
 
-
-
-##### Collection and Composite Views now respect the collection comparator when rendering and when new views are added.
-
-
+We decided to change this method to be private, as the internals of a collection view interacting with its collection shouldn't be
+overridden. We also decided to reference the changing collection rather than adding more API methods that reference children views,
+as the collection view API is becoming quite full with similar-sounding method names.
 
 ##### collectionView’s and compositeView’s method `onChildRemove` is now known as `_onCollectionRemove`
 
+The reasoning here is really identical to the above.
 
+##### Collection and Composite Views now respect the collection comparator when rendering and when new views are added.
+
+One of the most-requested features for Marionette views were automatically sorted Collections. You've now got it! If you'd
+rather opt out of this functionality, just pass the new `sort` option to be false.
+
+```js
+this.collectionView = new MyCollectionView({
+  sort: false
+});
+```
 
 ##### `collectionView` and `compositeView` now have an optional emptyViewOptions property which allows you to customize your `emptyView`.
 
@@ -341,7 +353,10 @@ To complement the `childViewOptions` you can use to style your child views we no
 
 ##### `renderModel` for `compositeView` is now called `_renderRoot`.
 
-
+If you're not familiar with this method, it's the one that renders the template of the Composite View. We began by deciding that it
+should be private, then went on to decide that calling it `renderModel` was really confusing, as many people working with Composite Views
+think of the models as being in the ones in the collection. So we decided to call it the root as a reference to the visualization of
+a composite view as a tree view.
 
 ##### `Layout` is now called `LayoutView`.
 
