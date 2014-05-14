@@ -8,94 +8,95 @@ To begin, select a v2 change from the menu below.
 
 ### v2 Changelog
 
-#### General
+#### [General]()
 
-- Removed the `Marionette.$` proxy. We are now using `Backbone.$` instead.
+- [Removed the `Marionette.$` proxy. We are now using `Backbone.$` instead.](https://github.com/Puppets/marionette-changelog-detail#removed-the-marionette-proxy)
 
-- triggerMethod now calls `on`MethodName before triggering the event. Previously it was the other way around.
+- [triggerMethod now calls `on`MethodName before triggering the event. Previously it was the other way around.](https://github.com/Puppets/marionette-changelog-detail#triggermethod-now-calls-onmethodname-before-triggering-the-event-previously-it-was-the-other-way-around)
 
-- Stricter JSHint rules were implemented for more consistent style across the codebase.
+- [Stricter JSHint rules were implemented for more consistent style across the codebase.](https://github.com/Puppets/marionette-changelog-detail#stricter-jshint-rules-were-implemented-for-more-consistent-style-across-the-codebase)
 
-- A new property, `Marionette.VERSION`, was added.
+- [A new property, `Marionette.VERSION`, was added.](https://github.com/Puppets/marionette-changelog-detail#a-new-property-marionetteversion-was-added)
 
-- All instances of the word `type` in the API have been replaced with the word `class`
-  - ChildViewType => ChildViewClass
+- [All instances of the word `type` in the API have been replaced with the word `class`](https://github.com/Puppets/marionette-changelog-detail#all-instances-of-the-word-type-in-the-api-have-been-replaced-with-the-word-class)
 
-- Most classes now have `getOption` attached to their instance
+- [Most classes now have `getOption` attached to their instance](https://github.com/Puppets/marionette-changelog-detail#most-classes-now-have-getoption-attached-to-their-instance)
 
-- Most classes now have `bindEntityEvents` attached to their instance
+- [Most classes now have `bindEntityEvents` attached to their instance](https://github.com/Puppets/marionette-changelog-detail#most-classes-now-have-bindentityevents-attached-to-their-instance)
 
-- Most classes now have `unbindEntityEvents` attached to their instance
+- [Most classes now have `unbindEntityEvents` attached to their instance](https://github.com/Puppets/marionette-changelog-detail#most-classes-now-have-unbindentityevents-attached-to-their-instance)
 
-- The built version of Marionette comes in a UMD wrapper. 
+- [The built version of Marionette comes in a UMD wrapper.](https://github.com/Puppets/marionette-changelog-detail#the-built-version-of-marionette-comes-in-a-umd-wrapper)
 
-#### Applications and Modules
+#### [Applications and Modules](https://github.com/Puppets/marionette-changelog-detail#applications-and-modules-1)
 
-- The arguments of a Module’s initialize function are now consistent with Module constructor argument order. 
+- [The arguments of a Module’s initialize function are now consistent with Module constructor argument order.](https://github.com/Puppets/marionette-changelog-detail#the-arguments-of-a-modules-initialize-function-are-now-consistent-with-module-constructor-argument-order)
 
-- Application’s `initialize` triggerMethods have been renamed
+- [Application’s `initialize` triggerMethods have been renamed](https://github.com/Puppets/marionette-changelog-detail#applications-initialize-triggermethods-have-been-renamed)
 
-- The Application message system is now the global Channel
+- [The Application message system is now the global Channel](https://github.com/Puppets/marionette-changelog-detail#the-application-message-system-is-now-the-global-channel)
 
-- Applications have two new triggerMethods: `before:region:add` and `before:region:remove`
+- [Applications have two new triggerMethods: `before:region:add` and `before:region:remove`](https://github.com/Puppets/marionette-changelog-detail#applications-have-two-new-triggermethods-beforeregionadd-and-beforeregionremove)
 
-#### Controllers
+#### [Controllers](https://github.com/Puppets/marionette-changelog-detail#controllers-1)
 
-- `stopListening` is now called after the `destroy` triggerMethod is called.
+- [`stopListening` is now called after the `destroy` triggerMethod is called.](https://github.com/Puppets/marionette-changelog-detail#stoplistening-is-now-called-after-the-destroy-triggermethod-is-called)
 
-#### Behaviors
+#### [Behaviors](https://github.com/Puppets/marionette-changelog-detail#behaviors-1)
 
-- `Behaviors` now support a means to group behaviors together.
+- [`Behaviors` now support a means to group behaviors together.](https://github.com/Puppets/marionette-changelog-detail#behaviors-now-support-a-means-to-group-behaviors-together)
 
-#### Regions
+#### [Regions](https://github.com/Puppets/marionette-changelog-detail#regions-1)
 
-- Regions now throw an error when they are instantiated with a nonexistent el.
+- [Regions now throw an error when they are instantiated with a nonexistent el.](https://github.com/Puppets/marionette-changelog-detail#regions-now-throw-an-error-when-they-are-instantiated-with-a-nonexistent-el)
 
-- Regions now use `.innerHtml` when clearing contents as compared this `this.$el.empty()`.
+- [Regions now use `.innerHtml` when clearing contents as compared this `this.$el.empty()`.](https://github.com/Puppets/marionette-changelog-detail#regions-now-use-innerhtml-when-clearing-contents-as-compared-this-thiselempty)
 
-- `region.show` now return `this`, just like how a view’s render returns `this`.
+- [`region.show` now return `this`, just like how a view’s render returns `this`.](https://github.com/Puppets/marionette-changelog-detail#regionshow-now-return-this-just-like-how-a-views-render-returns-this)
 
-- Regions trigger two new events, `before:swap` and `swap`, when it swaps views when calling `show`.
+- [Regions trigger two new events, `before:swap` and `swap`, when it swaps views when calling `show`.](https://github.com/Puppets/marionette-changelog-detail#regions-trigger-two-new-events-beforeswap-and-swap-when-it-swaps-views-when-calling-show)
 
-- Region’s el can now be a DOM node / DOM string selector / Jquery selector instance, just like a View’s el.
+- [Region’s el can now be a DOM node / DOM string selector / Jquery selector instance, just like a View’s el.](https://github.com/Puppets/marionette-changelog-detail#regions-el-can-now-be-a-dom-node--dom-string-selector--jquery-selector-instance-just-like-a-views-el)
 
-- Regions now expose region.el and region.$el, just like View’s.
+- [Regions now expose region.el and region.$el, just like View’s.](https://github.com/Puppets/marionette-changelog-detail#regions-now-expose-regionel-and-regionel-just-like-views)
 
-- Calling show on a region with the same view that is currently shown is now a noop.
+- [Calling show on a region with the same view that is currently shown is now a noop.](https://github.com/Puppets/marionette-changelog-detail#calling-show-on-a-region-with-the-same-view-that-is-currently-shown-is-now-a-noop)
 
-- Regions now fire a new triggerMethod, `before:destroy`, triggerMethod prior to destruction of a region.
+- [Regions now fire a new triggerMethod, `before:destroy`, triggerMethod prior to destruction of a region.](https://github.com/Puppets/marionette-changelog-detail#regions-now-fire-a-new-triggermethod-beforedestroy-triggermethod)
 
-#### Views
+#### [Views](https://github.com/Puppets/marionette-changelog-detail#views-1)
 
-- Returning false from `onBeforeClose` no longer prevents the view from closing.
+- [Returning false from `onBeforeClose` no longer prevents the view from closing.](https://github.com/Puppets/marionette-changelog-detail#returning-false-from-onbeforeclose-no-longer-prevents-the-view-from-closing)
 
-- rename `close` to `destroy` for views.
+- [rename `close` to `destroy` for views.](https://github.com/Puppets/marionette-changelog-detail#rename-close-to-destroy-for-views)
 
-- Removes duplicate and inconsistent `itemView` events.
+- [Removes duplicate and inconsistent `itemView` events.](https://github.com/Puppets/marionette-changelog-detail#removes-duplicate-and-inconsistent-itemview-events)
 
-- A new triggerMethod was added to collectionView: `before:child:remove`. 
+- [A new triggerMethod was added to collectionView: `before:child:remove`.](https://github.com/Puppets/marionette-changelog-detail#a-new-triggermethod-was-added-to-collectionview-beforechildremove) 
 
-- childEvents callbacks no longer receives the event name as the first argument.
+- [childEvents callbacks no longer receives the event name as the first argument.](https://github.com/Puppets/marionette-changelog-detail#childevents-callbacks-no-longer-receives-the-event-name-as-the-first-argument)
 
-- `itemView` within a `collectionView` is now known as `childView`.
+- [`itemView` within a `collectionView` is now known as `childView`.](https://github.com/Puppets/marionette-changelog-detail#itemview-within-a-collectionview-is-now-known-as-childview)
 
-- `compositeView` now calls `_onCollectionAdd` when adding a child view as compared to `addChildView`
+- [`compositeView` now calls `_onCollectionAdd` when adding a child view as compared to `addChildView`](https://github.com/Puppets/marionette-changelog-detail#compositeview-now-calls-_oncollectionadd-when-adding-a-child-model-as-compared-to-addchildview)
 
-- Collection and Composite Views now respect the collection comparator when rendering and when new views are added.
+- [Collection and Composite Views now respect the collection comparator when rendering and when new views are added.](https://github.com/Puppets/marionette-changelog-detail#collectionviews-and-compositeviews-method-onchildremove-is-now-known-as-_oncollectionremove)
 
-- collectionView’s and compositeView’s method `onChildRemove` is now known as `_onCollectionRemove`
+- [collectionView’s and compositeView’s method `onChildRemove` is now known as `_onCollectionRemove`](https://github.com/Puppets/marionette-changelog-detail#collection-and-composite-views-now-respect-the-collection-comparator-when-rendering-and-when-new-views-are-added)
 
-- `collectionView` and `compositeView` now have an optional emptyViewOptions property which allows you to customize your `emptyView`.
+- [`collectionView` and `compositeView` now have an optional emptyViewOptions property which allows you to customize your `emptyView`.](https://github.com/Puppets/marionette-changelog-detail#collectionview-and-compositeview-now-have-an-optional-emptyviewoptions-property-which-allows-you-to-customize-your-emptyview)
 
-- `renderModel` for `compositeView` is now called `_renderRoot`.
+- [`renderModel` for `compositeView` is now called `_renderRoot`.](https://github.com/Puppets/marionette-changelog-detail#rendermodel-for-compositeview-is-now-called-_renderroot)
 
-- `Layout` is now called `LayoutView`.
+- [`Layout` is now called `LayoutView`.](https://github.com/Puppets/marionette-changelog-detail#layout-is-now-called-layoutview)
 
-- Layouts now facilitate overriding the default RegionManager with a custom Class through the use of the `getRegionManager` method.
+- [Layouts now facilitate overriding the default RegionManager with a custom Class through the use of the `getRegionManager` method.](https://github.com/Puppets/marionette-changelog-detail#layouts-now-facilitate-overriding-the-default-regionmanager-with-a-custom-class-through-the-use-of-the-getregionmanager-method)
 
-- LayoutViews now lets you specify the `regions` hash as an option upon instantiation.
+- [LayoutViews now lets you specify the `regions` hash as an option upon instantiation.](https://github.com/Puppets/marionette-changelog-detail#layoutviews-now-lets-you-specify-the-regions-hash-as-an-option-upon-instantiation)
 
 ================
+
+#### General
 
 ##### Removed the `Marionette.$` proxy.
 
