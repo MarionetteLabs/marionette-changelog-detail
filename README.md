@@ -8,7 +8,7 @@ To begin, select a v2 change from the menu below.
 
 ### v2 Changelog
 
-#### [General]()
+#### [General](https://github.com/Puppets/marionette-changelog-detail/blob/master/README.md#general-1)
 
 - [Removed the `Marionette.$` proxy. We are now using `Backbone.$` instead.](https://github.com/Puppets/marionette-changelog-detail#removed-the-marionette-proxy)
 
