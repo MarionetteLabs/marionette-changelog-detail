@@ -1,8 +1,8 @@
-# marionette-upgrade-why
+# Marionette Changelog Detail
 
 The v2 CHANGELOG is meant to be a succinct description of each change made for v2. But
-such terse statements are only so helpful. You might often be left with the big question: "Why?"
-And that's the very question the Marionette Upgrade Why is intended to answer.
+such terse statements are only so helpful. You might often be left wondering why a particular
+change was made. That's question the Changelog Detail is intended to answer.
 
 To begin, select a v2 change from the menu below.
 
