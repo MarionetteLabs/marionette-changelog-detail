@@ -1,9 +1,8 @@
 # marionette-upgrade-why
 
 The v2 CHANGELOG is meant to be a succinct description of each change made for v2. But
-that is only so helpful. A description of a change without much explanation leaves one
-with the big question: "Why?" And that's the very question the Marionette Upgrade Why
-is meant to answer.
+such terse statements are only so helpful. You might often be left with the big question: "Why?"
+And that's the very question the Marionette Upgrade Why is intended to answer.
 
 To begin, select a v2 change from the menu below.
 
@@ -19,30 +18,26 @@ To begin, select a v2 change from the menu below.
 
 - A new property, `Marionette.VERSION`, was added.
 
-- All instances of the word `type` in the API have been replaced with the word `class`. For instance:
-  - regionType => regionClass
+- All instances of the word `type` in the API have been replaced with the word `class`
   - ChildViewType => ChildViewClass
 
-- Most classes now have `getOption` attached to their instance, taking advantage of the new helper function `Marionette.proxyGetOption`
+- Most classes now have `getOption` attached to their instance
 
-- Most classes now have `bindEntityEvents` attached to their instance, taking advantage of the new helper function `Marionette.proxyBindEntityEvents`
+- Most classes now have `bindEntityEvents` attached to their instance
 
-- Most classes now have `unbindEntityEvents` attached to their instance, taking advantage of the new helper function `Marionette.proxyUnbindEntityEvents`
+- Most classes now have `unbindEntityEvents` attached to their instance
 
 - The built version of Marionette comes in a UMD wrapper. 
 
 #### Applications and Modules
 
-- The arguments of a Module’s initialize function are now consistent with Module constructor argument order. Previously they were inconsistent with one another.
-```js
-initialize: function( moduleName, app, options ) {
-```
+- The arguments of a Module’s initialize function are now consistent with Module constructor argument order. 
 
-- Application’s `initialize` triggerMethods have been renamed to `start`, which is more descriptive of what is actually happening. More specifically, `initialize:before` and `initialize:after` are now `before:start` and `start`, respectively. No functionality has been lost with this change.
+- Application’s `initialize` triggerMethods have been renamed
 
-- The Application message system has been replaced with a [channel named “global”](https://github.com/marionettejs/backbone.wreqr#channel)
+- The Application message system is now the global Channel
 
-- Applications have two new triggerMethods: `before:region:add` and `before:region:remove` to complement their existing region events.
+- Applications have two new triggerMethods: `before:region:add` and `before:region:remove`
 
 #### Controllers
 
@@ -50,11 +45,11 @@ initialize: function( moduleName, app, options ) {
 
 #### Behaviors
 
-- `Behaviors` now support a means to group behaviors together. Any Behavior can now have a behavior key of its own, very similar to how a view can have behaviors.
+- `Behaviors` now support a means to group behaviors together.
 
 #### Regions
 
-- Regions now throw an error when they are instantiated with a nonexistent el. Previously this was a silent failure.
+- Regions now throw an error when they are instantiated with a nonexistent el.
 
 - Regions now use `.innerHtml` when clearing contents as compared this `this.$el.empty()`.
 
@@ -65,41 +60,26 @@ initialize: function( moduleName, app, options ) {
 - Region’s el can now be a DOM node / DOM string selector / Jquery selector instance, just like a View’s el.
 
 - Regions now expose region.el and region.$el, just like View’s.
-Due to this change if you were depending on region.el to be a string selector you must update your code to use region.$el.selector. 
 
-- Calling show on a region with the same view that is currently shown is now a noop. Previously the view would be re-rendered. You can force a rerender by passing `forceShow: true` with the region show options.
-`MyApp.mainRegion.show(myView, {forceShow: true});`
+- Calling show on a region with the same view that is currently shown is now a noop.
 
 - Regions now fire a new triggerMethod, `before:destroy`, triggerMethod prior to destruction of a region.
 
 #### Views
 
 - Returning false from `onBeforeClose` no longer prevents the view from closing.
-- You can no longer return false from onBeforeClose to prevent a view
-    from closing. This behavior was inconsistent with the rest of the
-    library, and would require far too much logic to respect in all cases.
-    Instead of returning false, you should handle your logic *before*
-    calling close on the view.
 
-- rename `close` to `destroy` for views. Close was misleading for users as to the fact that you could reuse the view if you wanted*. Destroy now clarifies the fact (in terminology and implementation)  that once a view is destroyed you can not reuse it.
+- rename `close` to `destroy` for views.
 
-- Removes duplicate and inconsistent `itemView` events. No functionality was lost with this change; use the unprefixed version instead. For instance, use `before:render` instead of `item:before:render`.
-  - item:before:render
-  - item:rendered
-  - itemview:item:before:render
-  - itemview:item:rendered
-  - itemview:item:before:close
-  - itemview:item:closed
-- item:before:destroy
-  - item:destroyed
+- Removes duplicate and inconsistent `itemView` events.
 
 - A new triggerMethod was added to collectionView: `before:child:remove`. 
 
 - childEvents callbacks no longer receives the event name as the first argument.
 
-- `itemView` within a `collectionView` is now known as `childView`. This removes confusion for new users as to the fact that you can show any type of view in your `collectionView`. All CollectionView methods that referenced `itemView` now use the same `childView` as well. For instance, `getItemView` is now `getChildView`.
+- `itemView` within a `collectionView` is now known as `childView`.
 
-- `compositeView` now calls `_onCollectionAdd` when adding a child view as compared to `addChildView` to maintain consistency with the collectionView implementation. 
+- `compositeView` now calls `_onCollectionAdd` when adding a child view as compared to `addChildView`
 
 - Collection and Composite Views now respect the collection comparator when rendering and when new views are added.
 
@@ -113,7 +93,7 @@ Due to this change if you were depending on region.el to be a string selector yo
 
 - Layouts now facilitate overriding the default RegionManager with a custom Class through the use of the `getRegionManager` method.
 
-- LayoutViews now lets you specify the `regions` hash as an option upon instantiation. Previously you need to create a brand new LayoutView class to set the regions.
+- LayoutViews now lets you specify the `regions` hash as an option upon instantiation.
 
 ================
 
@@ -178,3 +158,120 @@ See the above.
 
 ##### The built version of Marionette comes in a UMD wrapper. 
 
+There used to be three builds of Marionette: just the core files (no Wreqr or Babysitter), a bundled version of the core,
+and a a UMD build of the core. There are just two builds now: bundled and not-bundled. Both are UMD.
+
+The biggest change here is that the directory structure of the built files has changed. Be sure to update your build
+process to reference the new files, especially if you use UMD Marionette!
+
+#### Applications and Modules
+
+##### The arguments of a Module’s initialize function are now consistent with Module constructor argument order. 
+
+When we added the initialize function to Modules we inexplicably left out the second argument from the function. Our mistake. We
+quickly added it back, but had to add it as the *third* argument to retain backwards compatible. This created a mis-match between
+initialize and constructor that we resolved to fix as soon as possible. So we did, in v2.
+
+##### Application’s `initialize` triggerMethods have been renamed
+
+This one might be a bit confusing to describe, but I'll do my best. Let's start at the beginning. In the Backbone world, as you might
+already know, objects have an initialize function that is called when you instantiate a new instance of that object. Because of this,
+we like to think of the verb `initialize` being reserved from when things are started up. But Applications didn't use it like that.
+
+Instead, Applications were using `initialize` to refer to when they were being **started**! This was bad for a few reasons. Firstly, it
+made no sense given the above. It also made no sense because modules had `before:start` and `start` triggerMethods. To make matters stranger,
+the Application still had a `start` callback that was identical to the `initialize` callback other than the name.
+
+We know, we know. Super confusing. But there is a bit of logic to this madness. You see, Applications have a method `addInitializers`, which
+adds a series of methods to be called when the Application begins. We think this is the origin of using the verb in this context came from. We
+also dislike the name of that method, but that might be changed in a future version of Marionette.
+
+##### The Application message system is now the global Channel
+
+Applications have an instance of an EventAggregator, Commands, and RequestResponse on them. A common use case for these is as a global
+messaging channel for the entire application. A recent update to Wreqr added an actual Channel object, which is just a collection of the
+three messaging systems with an associated name. It only made sense for us to replace the unnamed Application instances with a channel
+named 'global.'
+
+##### Applications have two new triggerMethods: `before:region:add` and `before:region:remove`
+
+You might be familiar with the fact that you can attach Regions directly to your application. What you might not know is that this is
+powered by an often-forgotten Marionette class called RegionManager. The details don't really matter, but what does matter is that the
+RegionManager has triggerMethods that are called before regions are added and removed. For whatever reason these weren't being forwarded
+onto the Application. Now they are!
+
+#### Controllers
+
+##### `stopListening` is now called after the `destroy` triggerMethod is called.
+
+This is a subtle change, like many of the evented changes seem to be. `stopListening` removes all of the event listeners from the Controller,
+but right now is called before the `destroy` triggerMethod. In Views, the other classes that call stopListening in their destroy function,
+the stopListening happens after close. So we changed it for consistency in the library.
+
+#### Behaviors
+
+##### `Behaviors` now support a means to group behaviors together.
+
+Sometimes you might want to group your behaviors together. For instance, maybe you have form validation, modal, and keybinding behaviors that
+are meant to work together in some view that was designed to represent a Form. Instead of referencing all three behaviors in each FormView,
+you can now pull in a single Behavior that is a collection of the three.
+
+#### Regions
+
+##### Regions now throw an error when they are instantiated with a nonexistent el.
+
+Regions only work when you've got an el to work with. Previously you could instantiate a view without an el and nothing would happen,
+which was very difficult to debug in big applications. This change causes an error to be thrown when the view's el can't be found,
+which should help with the debugging process.
+
+If you're one of the rare cases where you might want a region to exist before its el does, you can simply create a new class and overwrite
+the constructor.
+
+##### Regions now use `.innerHtml` when clearing contents as compared this `this.$el.empty()`.
+
+This change provides us with a huge performance boost, with no loss of functionality. But it does place more responsibility on you as a
+developer. Whereas regions would previously clean up any event listeners, preventing memory leaks, they no longer do. This is because it
+isn't the responsibility of the region to clean up event listeners. Regions themselves don't have any event listeners out of the box
+in Marionette, so they weren't ever cleaning up their own events. Instead, they were handling a responsibility that belongs to the View.
+
+Just keep in mind that if you're using jQuery plugins or setting custom DOM listeners for your views, be sure to shut them down in the
+`onBeforeDestroy` callback!
+
+##### `region.show` now return `this`, just like how a view’s render returns `this`
+
+One of the things we did in v2 was make the API of regions more like views. We like this because both Classes are related to displaying content.
+The only specification Backbone gives to View's render is that it should return `this`, so we added that same feature to a Region's `show`
+method, which is analogous to View's render method.
+
+##### Regions trigger two new events, `before:swap` and `swap`, when it swaps views when calling `show`.
+
+You're probably used to the `show` triggerMethods of Regions, and we added new ones for you to work with. The `swap` events are only triggered
+when a view that already has a view is showing a new one. In other words, `show` is called even when the view goes from being empty to filled,
+whereas `swap` is only changed when it goes from being occupied by one view to being occupied by another.
+
+##### Region’s el can now be a DOM node / DOM string selector / Jquery selector instance, just like a View’s el.
+
+One of the great features of Views is the flexibility in specifying their `el`. But Regions never had the same flexibility, always
+requiring you to pass a selector string. In v2 that has changed!
+
+##### Regions now expose region.el and region.$el, just like View’s.
+
+Just like Views, you can now access the Region's raw `el`. In v1 this property always remained the selector string. To access the selector
+you can always use `this.$el.selector`.
+
+##### Calling show on a region with the same view that is currently shown is now a noop.
+
+The `show` method of a region used to be really destructive. If you went to show a view that was already in the region, that view would
+be completely re-rendered. Rendering is an expensive process, so we decided to make this method idempotent in v2. All that means is you can
+call it any number of times with the same view, but it will only render that view on the first try.
+
+To get the old functionality back, pass `forceShow:true` in the options.
+
+```js
+this.region.show(myView, {forceShow: true});
+```
+
+##### Regions now fire a new triggerMethod, `before:destroy`, triggerMethod.
+
+Every Marionette Class let you tune in before the destroy happened with `onBeforeDestroy`. But Regions were an unexplained exception to that rule.
+We decided to make it consistent by adding the before destroy hook to the Region class.
