@@ -58,6 +58,8 @@ To begin, select a v2 change from the menu below.
 
 - [Region’s el can now be a DOM node / DOM string selector / Jquery selector instance, just like a View’s el.](https://github.com/Puppets/marionette-changelog-detail#regions-el-can-now-be-a-dom-node--dom-string-selector--jquery-selector-instance-just-like-a-views-el)
 
+- [Region’s ensureEl is now _ensureElement](https://github.com/Puppets/marionette-changelog-detail#regions-ensureel-is-now--ensureelement)
+
 - [Regions now expose region.el and region.$el, just like View’s.](https://github.com/Puppets/marionette-changelog-detail#regions-now-expose-regionel-and-regionel-just-like-views)
 
 - [Calling show on a region with the same view that is currently shown is now a noop.](https://github.com/Puppets/marionette-changelog-detail#calling-show-on-a-region-with-the-same-view-that-is-currently-shown-is-now-a-noop)
@@ -254,6 +256,10 @@ whereas `swap` is only changed when it goes from being occupied by one view to b
 
 One of the great features of Views is the flexibility in specifying their `el`. But Regions never had the same flexibility, always
 requiring you to pass a selector string. In v2 that has changed!
+
+##### Region’s ensureEl is now _ensureElement
+
+Region's `ensureEl` functioned in the exact same way that View's `_ensureElement` did. So we renamed it.
 
 ##### Regions now expose region.el and region.$el, just like View’s.
 
