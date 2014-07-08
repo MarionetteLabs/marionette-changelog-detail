@@ -40,6 +40,8 @@ To begin, select a v2 change from the menu below.
 
 #### [Controllers](https://github.com/Puppets/marionette-changelog-detail#controllers-1)
 
+- [A new triggerMethod, `before:destroy`, was added.](https://github.com/Puppets/marionette-changelog-detail#a-new-triggermethod-beforedestroy-was-added)
+
 - [`stopListening` is now called after the `destroy` triggerMethod is called.](https://github.com/Puppets/marionette-changelog-detail#stoplistening-is-now-called-after-the-destroy-triggermethod-is-called)
 
 #### [Behaviors](https://github.com/Puppets/marionette-changelog-detail#behaviors-1)
@@ -202,6 +204,15 @@ RegionManager has triggerMethods that are called before regions are added and re
 onto the Application. Now they are!
 
 #### Controllers
+
+##### A new triggerMethod, `before:destroy`, was added
+
+Marionette has long had the `destroy` triggerMethod, but the `before:destroy` triggerMethod was just
+added in v2. When you think about it, an `onDestroy` method makes little sense...after something has
+been destroyed you shouldn't be referencing it. Because of this we're slowly migrating the library
+toward only supporting `onBeforeDestroy`, which we believe makes more sense. `onBeforeDestroy` and
+`onDestroy` are called right after one another. We encourage you to switch your code over to utilize
+the new `onBeforeDestroy` to future-proof it.
 
 ##### `stopListening` is now called after the `destroy` triggerMethod is called.
 
